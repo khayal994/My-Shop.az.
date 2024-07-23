@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>W3.CSS Template</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="new.css">
+<style>
+html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+        /* Reset styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Navbar styles */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+        }
+
+        .navbar-search {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-search input[type="text"] {
+            padding: 8px;
+            border: none;
+            border-radius: 5px 0 0 5px;
+        }
+
+        .navbar-search button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+        }
+
+        .navbar-search button:hover {
+            background-color: #45a049;
+        }
+
+        /* Filter section styles */
+        .filter-section {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .filter-section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .filter {
+            margin-right: 20px;
+            margin-bottom: 10px;
+        }
+
+        .filter label {
+            font-weight: bold;
+        }
+
+        .filter input[type="text"],
+        .filter select,
+        .filter input[type="number"],
+        .filter input[type="range"],
+        .filter input[type="color"] {
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 150px;
+        }
+
+        .filter input[type="range"] {
+            width: 100%;
+        }
+
+        .filter button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .filter button:hover {
+            background-color: #45a049;
+        }
+
+        /* Product card styles */
+        .product-card {
+            width: 200px;
+            border: 1px solid #ddd;
+           
+            border-radius: 5px;
+            margin: 10px;
+            padding: 10px;
+            text-align: center;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-card img {
+            max-width: 100%;
+            border-radius: 5px;
+
+        }
+
+        .product-card h3 {
+            font-size: 1.2rem;
+            margin: 8px 0;
+        }
+
+        .product-card p {
+            font-size: 1rem;
+            color: #888;
+        }
+        .product-container{
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .filter-section {
+                padding: 10px;
+            }
+
+            .filter {
+                margin-right: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .filter {
+                width: 100%;
+                margin-right: 0;
+            }
+        }
+</style>
+</head>
+<body class="w3-light-grey">
+
+<!-- Top container -->
+<div class="w3-bar w3-top w3-black w3-large" style="z-index:4">
+  <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-filter"></i> Filterlər</button>
+  <span class="w3-bar-item w3-right">Logo</span>
+</div>
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;height: 700px;" id="mySidebar"><br>
+
+  <div class="w3-container">
+    <h5>Filterlər</h5>
+  </div>
+  <div class="w3-bar-block">
+    <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
+    <div class="filter">
+        <label for="sizeFilter">Ölçü</label>
+        <input type="text" id="sizeFilter" placeholder="Ölçü daxil edin">
+    </div>
+    <div class="filter">
+        <label for="minPriceFilter">Min Qiymət</label>
+        <input type="number" id="minPriceFilter" placeholder="Min qiymət daxil edin">
+    </div>
+    <div class="filter">
+        <label for="maxPriceFilter">Max Qiymət</label>
+        <input type="number" id="maxPriceFilter" placeholder="Max qiymət daxil edin">
+    </div>
+    <div class="filter">
+        <label for="brandFilter">Marka</label>
+        <input type="text" id="brandFilter" placeholder="Marka daxil edin">
+    </div>
+    <div class="filter">
+        <label for="shoeSizeFilter">Ayakkabı Ölçüsü</label>
+        <input type="text" id="shoeSizeFilter" placeholder="Ayakkabı ölçüsü daxil edin">
+    </div>
+    <div class="filter">
+        <label for="genderFilter">Cinsiyyət</label><br>
+        <select id="genderFilter">
+            <option value="">Hamısı</option>
+            <option value="men">Kişi</option>
+            <option value="women">Qadın</option>
+        </select>
+    </div>
+    <div class="filter">
+        <label for="colorFilter">Rəng</label><br>
+        <select id="colorFilter">
+            <option value="">Hamısı</option>
+            <option value="red">Qırmızı</option>
+            <option value="black">Qara</option>
+            <option value="green">Yaşıl</option>
+            <option value="blue">Mavi</option>
+            <option value="yellow">Sarı</option>
+            <option value="white">Ağ</option>
+            <option value="lime">Lime</option>
+            <option value="gold">Qızılı</option>
+            <option value="beige">Bej</option>
+            <option value="burgundy">Bordo</option>
+            <option value="khaki">Haki</option>
+            <option value="purple">Mor</option>
+            <option value="orange">Narıncı</option>
+        </select>
+    </div>
+    <p><button class="w3-button w3-block w3-green w3-left-align" type="button" onclick="searchProducts()"><i class="fa fa-search w3-margin-right"></i> Filterlə</button></p>
+    <br><br><br>
+  </div>
+</nav>
+
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:300px;margin-top:43px;">
+
+  <!-- Header -->
+        <!-- Navbar -->
+        <nav class="navbar">
+            <div class="navbar-brand">Bizim Məhsullar</div>
+            <div class="navbar-search">
+                <input type="text" id="searchInput" placeholder="Məhsul axtar">
+                <button type="button" onclick="searchProducts()">Axtar</button>
+            </div>
+        </nav> 
+        <!-- Product Cards Container -->
+        <div class="product-container" id="productContainer">
+            <!-- Product Cards will be dynamically added here -->
+        </div>
+    
+
+  <!-- End page content -->
+</div>
+
+<script>
+            // Sample product data with category, price, size, gender, color, brand, and shoeSize
+            const products = [
+            { id: 1, name: 'Məhsul 1', image: 'sekil 10.jpg', category: 'Elektronika', price: 50, size: 'M', gender: 'men', color: 'red', brand: 'Brand 1', shoeSize: '42' },
+            { id: 2, name: 'Məhsul 2', image: 'sekil 10.jpg', category: 'Geyim', price: 75, size: 'L', gender: 'women', color: 'blue', brand: 'Brand 2', shoeSize: '38' },
+            { id: 3, name: 'Məhsul 3', image: 'sekil 10.jpg', category: 'Kitab', price: 30, size: 'XL', gender: 'men', color: 'green', brand: 'Brand 1', shoeSize: '40' },
+            { id: 4, name: 'Məhsul 4', image: 'sekil 10.jpg', category: 'Elektronika', price: 50, size: 'M', gender: 'men', color: 'black', brand: 'Brand 2', shoeSize: '41' },
+            { id: 5, name: 'Məhsul 5', image: 'sekil 10.jpg', category: 'Geyim', price: 75, size: 'L', gender: 'women', color: 'red', brand: 'Brand 1', shoeSize: '39' },
+            { id: 6, name: 'Məhsul 6', image: 'sekil 10.jpg', category: 'Kitab', price: 30, size: 'XL', gender: 'men', color: 'blue', brand: 'Brand 2', shoeSize: '37' },
+            { id: 7, name: 'Məhsul 7', image: 'sekil 10.jpg', category: 'Elektronika', price: 50, size: 'M', gender: 'men', color: 'green', brand: 'Brand 1', shoeSize: '42' },
+            { id: 8, name: 'Məhsul 8', image: 'sekil 10.jpg', category: 'Geyim', price: 75, size: 'L', gender: 'women', color: 'black', brand: 'Brand 2', shoeSize: '38' },
+            { id: 9, name: 'Məhsul 9', image: 'sekil 10.jpg', category: 'Kitab', price: 30, size: 'XL', gender: 'men', color: 'red', brand: 'Brand 1', shoeSize: '40' },
+            { id: 10, name: 'Məhsul 10', image: 'sekil 10.jpg', category: 'Elektronika', price: 50, size: 'M', gender: 'men', color: 'blue', brand: 'Brand 2', shoeSize: '41' },
+            { id: 11, name: 'Məhsul 11', image: 'sekil 10.jpg', category: 'Geyim', price: 75, size: 'L', gender: 'women', color: 'green', brand: 'Brand 1', shoeSize: '39' },
+            { id: 12, name: 'Məhsul 12', image: 'sekil 10.jpg', category: 'Kitab', price: 30, size: 'XL', gender: 'men', color: 'black', brand: 'Brand 2', shoeSize: '37' },
+            { id: 13, name: 'Məhsul 12', image: 'sekil 10.jpg', category: 'Kitab', price: 30, size: 'XL', gender: 'men', color: 'black', brand: 'Brand 2', shoeSize: '37' },
+            { id: 14, name: 'Məhsul 12', image: 'sekil 10.jpg', category: 'Kitab', price: 30, size: 'XL', gender: 'men', color: 'black', brand: 'Brand 2', shoeSize: '37' },
+            { id: 15, name: 'Məhsul 12', image: 'sekil 10.jpg', category: 'Kitab', price: 30, size: 'XL', gender: 'men', color: 'black', brand: 'Brand 2', shoeSize: '37' }
+            // Əlavə məhsullar
+        ];
+
+        // Məhsulları filterləmək üçün funksiya
+        function filterProducts(products) {
+            const searchInput = document.getElementById('searchInput').value.toLowerCase().trim();
+            const genderFilter = document.getElementById('genderFilter').value.toLowerCase().trim();
+            const colorFilter = document.getElementById('colorFilter').value.toLowerCase().trim();
+            const sizeFilter = document.getElementById('sizeFilter').value.trim();
+            const minPriceFilter = document.getElementById('minPriceFilter').value.trim();
+            const maxPriceFilter = document.getElementById('maxPriceFilter').value.trim();
+            const brandFilter = document.getElementById('brandFilter').value.toLowerCase().trim();
+            const shoeSizeFilter = document.getElementById('shoeSizeFilter').value.trim();
+
+            const filteredProducts = products.filter(product => {
+                const productName = product.name.toLowerCase();
+                const productCategory = product.category.toLowerCase();
+                const isSearchMatch = productName.includes(searchInput) || productCategory.includes(searchInput);
+                const isGenderMatch = genderFilter ? product.gender === genderFilter : true;
+                const isColorMatch = colorFilter ? product.color === colorFilter : true;
+                const isSizeMatch = sizeFilter ? product.size.toLowerCase() === sizeFilter.toLowerCase() : true;
+                const isMinPriceMatch = minPriceFilter ? product.price >= parseInt(minPriceFilter) : true;
+                const isMaxPriceMatch = maxPriceFilter ? product.price <= parseInt(maxPriceFilter) : true;
+                const isBrandMatch = brandFilter ? product.brand.toLowerCase().includes(brandFilter) : true;
+                const isShoeSizeMatch = shoeSizeFilter ? product.shoeSize === shoeSizeFilter : true;
+
+                return isSearchMatch && isGenderMatch && isColorMatch && isSizeMatch && isMinPriceMatch && isMaxPriceMatch && isBrandMatch && isShoeSizeMatch;
+            });
+
+            return filteredProducts;
+        }
+
+        // Məhsulları göstərmək üçün funksiya
+        function displayProducts() {
+            const container = document.getElementById('productContainer');
+            container.innerHTML = '';
+
+            const filteredProducts = filterProducts(products);
+            
+            filteredProducts.forEach(product => {
+                const card = createProductCard(product);
+                container.appendChild(card);
+            });
+        }
+
+        // Məhsul kartı yaratmaq üçün funksiya
+        function createProductCard(product) {
+            const card = document.createElement('div');
+            card.classList.add('product-card');
+            
+            
+            const img = document.createElement('img');
+            img.src = `${product.image}`;
+            img.alt = product.name;
+            card.appendChild(img);
+
+            const price = document.createElement('p');
+            price.textContent = `Qiymət: ${product.price} AZN`;
+            card.appendChild(price);
+            
+            const title = document.createElement('h3');
+            title.textContent = product.name;
+            card.appendChild(title);
+
+            const category = document.createElement('p');
+            category.textContent = `Kateqoriya: ${product.category}`;
+            card.appendChild(category);
+
+
+            const size = document.createElement('p');
+            size.textContent = `Ölçü: ${product.size}`;
+            card.appendChild(size);
+
+            const gender = document.createElement('p');
+            gender.textContent = `Cinsiyyət: ${product.gender}`;
+            card.appendChild(gender);
+
+            const color = document.createElement('p');
+            color.textContent = `Rəng: ${product.color}`;
+            card.appendChild(color);
+
+            const brand = document.createElement('p');
+            brand.textContent = `Marka: ${product.brand}`;
+            card.appendChild(brand);
+
+            const shoeSize = document.createElement('p');
+            shoeSize.textContent = `Ayakkabı Ölçüsü: ${product.shoeSize}`;
+            card.appendChild(shoeSize);
+
+            return card;
+        }
+
+        // Məhsulları axtarmaq üçün funksiya
+        function searchProducts() {
+            displayProducts();
+        }
+
+        // Başlanğıcda məhsulları göstər
+        displayProducts();
+// Get the Sidebar
+var mySidebar = document.getElementById("mySidebar");
+
+// Get the DIV with overlay effect
+var overlayBg = document.getElementById("myOverlay");
+
+// Toggle between showing and hiding the sidebar, and add overlay effect
+function w3_open() {
+  if (mySidebar.style.display === 'block') {
+    mySidebar.style.display = 'none';
+    overlayBg.style.display = "none";
+  } else {
+    mySidebar.style.display = 'block';
+    overlayBg.style.display = "block";
+  }
+}
+
+// Close the sidebar with the close button
+function w3_close() {
+  mySidebar.style.display = "none";
+  overlayBg.style.display = "none";
+}
+</script>
+
+</body>
+</html>

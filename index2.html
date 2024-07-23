@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            display: flex;
+            max-width: 1000px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+        }
+
+        .image-gallery {
+            display: flex;
+            margin-right: 20px;
+        }
+
+        .thumbnail {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-right: 20px; /* Küçük resimlerle ana resim arasında boşluk */
+        }
+
+        .thumbnail img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            cursor: pointer;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .main-image {
+            margin-right: 20px;
+        }
+
+        .main-image img {
+            width: 300px;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+        }
+
+        .product-details {
+            flex-grow: 1;
+        }
+
+        .product-details h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .product-details .price {
+            font-size: 20px;
+            color: #e67e22;
+            margin-bottom: 10px;
+        }
+
+        .product-details .description {
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .sizes, .colors {
+            margin-bottom: 20px;
+        }
+
+        .sizes button, .colors button {
+            background-color: white;
+            border: 1px solid #ddd;
+            padding: 5px 10px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .sizes button.selected {
+            background-color: #000;
+            color: #fff;
+        }
+
+        .color-option {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 1px solid #ddd;
+            display: inline-block;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .color-option.selected::after {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: -5px;
+            width: 27px;
+            height: 23px;
+            border: 2px solid black;
+            border-radius: 50%;
+        }
+
+        .color-option.black { background-color: black; }
+        .color-option.red { background-color: red; }
+        .color-option.grey { background-color: grey; }
+
+        .quantity {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .quantity button {
+            background-color: white;
+            border: 1px solid #ddd;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .quantity input {
+            width: 40px;
+            text-align: center;
+            border: 1px solid #ddd;
+            margin: 0 10px;
+        }
+
+        .add-to-cart {
+            background-color: black;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .additional-options button {
+            background-color: white;
+            border: none;
+            cursor: pointer;
+            margin-right: 10px;
+            text-decoration: underline;
+        }
+
+        /* Media query for mobile devices */
+        @media (max-width: 600px) {
+            body {
+                flex-direction: column;
+                height: auto;
+            }
+
+            .container {
+                flex-direction: column;
+                max-width: 100%;
+                padding: 10px;
+            }
+
+            .image-gallery {
+                flex-direction: column;
+                align-items: center;
+                margin-right: 0;
+            }
+
+            .main-image {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+
+            .main-image img {
+                width: 100%;
+                height: auto;
+            }
+
+            .thumbnail {
+                flex-direction: row;
+                margin-right: 0;
+                gap: 10px;
+                justify-content: center;
+            }
+
+            .product-details {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="image-gallery">
+            <div class="main-image">
+                <img src="sekil 89.jpg" alt="Main Product Image">
+            </div>
+            <div class="thumbnail">
+                <img src="sekil 104.jpg" alt="Product Thumbnail 1" onclick="changeMainImage(this)">
+                <img src="sekil 138.jpg" alt="Product Thumbnail 2" onclick="changeMainImage(this)">
+                <img src="sekil 153.jpg" alt="Product Thumbnail 3" onclick="changeMainImage(this)">
+                <img src="sekil 165.jpg" alt="Product Thumbnail 4" onclick="changeMainImage(this)">
+            </div>
+        </div>
+        <div class="product-details">
+            <h1>Letsfit Smart Watch, Fitness Tracker with Heart Rate</h1>
+            <p class="price">$79.99</p>
+            <p class="description">Phasellus sed volutpat orci. Fusce eget lore mauris vehicula elementum gravida nec dui. Aenean aliquam varius ipsum, non ultricies tellus sodales eu. Donec dignissim viverra nunc, ut aliquet magna posuere eget.</p>
+            <div class="sizes">
+                <h3>Sizes</h3>
+                <button onclick="selectSize(this, 'XS')">XS</button>
+                <button onclick="selectSize(this, 'S')">S</button>
+                <button onclick="selectSize(this, 'M')">M</button>
+                <button onclick="selectSize(this, 'L')">L</button>
+                <button onclick="selectSize(this, 'XL')">XL</button>
+            </div>
+            <div class="colors">
+                <h3>Color</h3>
+                <button class="color-option black" onclick="selectColor(this, 'Black')"></button>
+                <button class="color-option red" onclick="selectColor(this, 'Red')"></button>
+                <button class="color-option grey" onclick="selectColor(this, 'Grey')"></button>
+            </div>
+
+            <button class="add-to-cart" onclick="sendToWhatsApp('Letsfit Smart Watch', '$79.99', 'https://www.youtube.com/'); event.stopPropagation();">Add to Cart</button>
+            <div class="additional-options">
+                <button>Add to Wishlist</button>
+                <button>Share</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let selectedColor = '';
+        let selectedSize = '';
+
+        function changeMainImage(thumbnail) {
+            const mainImage = thumbnail.closest('.container').querySelector('.main-image img');
+            mainImage.src = thumbnail.src;
+        }
+
+        function selectColor(button, color) {
+            selectedColor = color;
+            console.log('Selected color:', selectedColor);
+
+            // Remove the 'selected' class from all color buttons
+            const colorButtons = document.querySelectorAll('.colors .color-option');
+            colorButtons.forEach(btn => btn.classList.remove('selected'));
+
+            // Add the 'selected' class to the clicked button
+            button.classList.add('selected');
+        }
+
+        function selectSize(button, size) {
+            selectedSize = size;
+            console.log('Selected size:', selectedSize);
+
+            // Remove the 'selected' class from all size buttons
+            const sizeButtons = document.querySelectorAll('.sizes button');
+            sizeButtons.forEach(btn => btn.classList.remove('selected'));
+
+            // Add the 'selected' class to the clicked button
+            button.classList.add('selected');
+        }
+
+        function sendToWhatsApp(productName, productPrice, productLink) {
+            var phoneNumber = "+9940552163114"; // WhatsApp nömrənizi daxil edin
+            var message = "Salam, mən " + productName + " adlı məhsulu sifariş etmək istəyirəm. Rəng: " + selectedColor + ", Ölçü: " + selectedSize + ". Məhsulun linki: " + productLink;
+            var url = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+        }
+    </script>
+</body>
+</html>
