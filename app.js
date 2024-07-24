@@ -280,10 +280,17 @@ function renderFavorites() {
         listItem.innerHTML = `
     <img src="${fav.image}" onclick="openProductDetail(${fav.id})">
     <div class="product-infox">
-        <p class="product-namex" onclick="openProductDetail(${fav.id})">${fav.name}</p> <!-- data-id dəyərini burada istifadə etdik -->
-        <p class="product-pricex">${fav.price}</p>
-        <p class="add-to-cart">Səbətə əlavə et</p>
-        <span class="remove-icon">&times;</span>
+        <p class="product-namex javaName" onclick="openProductDetail(${fav.id})">${fav.name}</p> <!-- data-id dəyərini burada istifadə etdik -->
+        <p class="product-pricex javaPrice">${fav.price}</p>
+        <span class="animated-deliveryxl javaAnimated ">Çatdırılma Pulsuz 0₼</span>
+        <div class="product-ratingxl">
+            <span class="star">&#9733;</span>
+            <span class="star">&#9733;</span>
+            <span class="star">&#9733;</span>
+            <span class="star">&#9733;</span>
+            <span class="star">&#9734;</span>
+        </div>
+        <button class="remove-icon javaRemove w3-button w3-block w3-red ">Məhsulu sil &times;</button>
     </div>
 `;
 
@@ -326,6 +333,16 @@ function closeFavoritesPage() {
 
 document.getElementById('favoritesList').addEventListener('click', function(event) {
     if (event.target.matches('.product-infox, .product-infox *, img')) {
+        closeFavoritesPage();
+    }
+});
+function closeFavoritesPage() {
+    document.getElementById('favoritesPagex').classList.remove('show');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+document.getElementById('favoritesList').addEventListener('click', function(event) {
+    if (event.target.matches('.product-infox, .product-infox *') || event.target.matches('img')) {
         closeFavoritesPage();
     }
 });
@@ -573,18 +590,49 @@ window.onclick = function(event) {
     }
 }
 // navbarDesing 
+// function showPage(pageId) {
+//     const contents = document.querySelectorAll('.contentDesing');
+//     const navItems = document.querySelectorAll('.nav-itemDesing');
+//     contents.forEach(content => {
+//         content.classList.remove('activeDesing');
+//     });
+//     navItems.forEach(navItem => {
+//         navItem.classList.remove('activeNav');
+//     });
+//     document.getElementById(pageId).classList.add('activeDesing');
+//     document.querySelector(`[onclick="showPage('${pageId}')"]`).classList.add('activeNav');
+// }
+
 function showPage(pageId) {
     const contents = document.querySelectorAll('.contentDesing');
     const navItems = document.querySelectorAll('.nav-itemDesing');
+    
     contents.forEach(content => {
         content.classList.remove('activeDesing');
     });
     navItems.forEach(navItem => {
         navItem.classList.remove('activeNav');
     });
+    
     document.getElementById(pageId).classList.add('activeDesing');
     document.querySelector(`[onclick="showPage('${pageId}')"]`).classList.add('activeNav');
+    window.location.hash = pageId;
+            // URL-i yalnız "index.html" və aktiv səhifə adı ilə yenilə
+            const url = `index.html#${pageId}`;
+            history.replaceState(null, document.title, url);
+
 }
+
+function loadPageFromHash() {
+    const pageId = window.location.hash.substring(1) || 'home';
+    showPage(pageId);
+}
+
+window.addEventListener('hashchange', loadPageFromHash);
+window.addEventListener('load', loadPageFromHash);
+
+
+
 
 
 
